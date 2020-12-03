@@ -1,6 +1,6 @@
 import binarySearch from '../index';
 
-test('bubble sort test', () => {
+test('binary search test', () => {
   const arr1 = [1, 2, 42, 543, 1234],
     arr2 = [1, 23, 34, 43, 52, 65, 232];
   const arr3: [] = [];

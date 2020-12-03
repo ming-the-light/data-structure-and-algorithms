@@ -12,9 +12,11 @@
 
 ## 算法
 
-- 排序（sort）
+- 排序（Sort）
   - [冒泡排序（bubble sorting）](src/algorithms/sort/bubble-sort/README.md)
-  - 插入排序（insertion sorting）
+  - [插入排序（insertion sort）](src/algorithms/sort/insertion-sort/README.md)
+- 查找（Search）
+  - [二分查找（Binary Search）](src/algorithms/search/binary-search/README.md)
 
 ## 预备知识
 
@@ -34,6 +36,5 @@
   - [leetcode](https://leetcode.com)
   - [leetcode CN](https://leetcode-cn.com/)
   - [code wars](https://www.codewars.com/)
-
 
 本仓库使用 [MIT](https://opensource.org/licenses/MIT) 许可证，您可以自由传播、修改其内容。

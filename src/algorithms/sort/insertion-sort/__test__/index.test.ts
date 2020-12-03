@@ -1,6 +1,6 @@
 import bubbleSort from '../index';
 
-test('bubble sort test', () => {
+test('insertion sort test', () => {
   expect(bubbleSort([2, 1, 4, 5, 2, 20932, 1])).toEqual([
     1,
     1,

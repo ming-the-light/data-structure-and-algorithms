@@ -1,44 +1,71 @@
-import TreeNode from '../tree-node';
+import { TreeNode, TraverseOrder, safeHeight, TreeNodeNullable } from '../base';
+import { BinaryTreeNullable, IBinaryTree } from './interface';
 
-interface IBinaryTree<T> {
-  root(): Nullable<TreeNode<T>>;
-  height(): number;
-  size(): number;
-  [Symbol.iterator](): Generator;
-}
+export default class BinaryTree<K, V> implements IBinaryTree<K, V> {
+  private _node: TreeNodeNullable<K, V>;
 
-export default abstract class BinaryTree<T> implements IBinaryTree<T> {
-  protected _root: Nullable<TreeNode<T>>;
+  private _height: number = 0;
 
-  constructor();
-  constructor(root: TreeNode<T>);
-  constructor(root?: TreeNode<T>) {
-    if (root) {
-      this._root = root;
-    }
+  private _size: number = 0;
+
+  private _getHeight(
+    this: BinaryTree<K, V>,
+    node: TreeNodeNullable<K, V>
+  ): number {
+    if (!node) return -1;
+
+    return Math.max(safeHeight(node.left), safeHeight(node.right)) + 1;
   }
 
-  root(): Nullable<TreeNode<T>> {
-    return this._root;
+  private _updateHeightAbove(
+    this: BinaryTree<K, V>,
+    node: TreeNodeNullable<K, V>
+  ) {
+    if (!node) return;
+
+    const height = this._getHeight(node);
+    if (height === node.height) return;
+
+    node.height = height;
+    node.parent && this._updateHeightAbove(node.parent);
   }
 
   height(): number {
-    return 1;
+    return this._height;
   }
 
   size(): number {
-    return 1;
+    return this._size;
   }
 
-  *iter(node: Nullable<TreeNode<T>>): Generator {
-    if (!node) return;
-
-    yield node.key;
-    yield* this.iter(node.left);
-    yield* this.iter(node.right);
+  traverse(
+    callback: (node: TreeNode<K, V>) => void,
+    order: TraverseOrder
+  ): void {
+    throw new Error('Method not implemented.');
   }
 
-  [Symbol.iterator](): Generator {
-    return this.iter(this._root);
+  root(): TreeNodeNullable<K, V> {
+    return this._node;
+  }
+
+  insertAsRC(node: TreeNode<K, V>, entry: Entry<K, V>): void {
+    node.insertAsRC(entry);
+    this._updateHeightAbove(node);
+  }
+  
+  insertAsLC(node: TreeNode<K, V>, entry: Entry<K, V>): void {
+    node.insertAsLC(entry);
+    this._updateHeightAbove(node);
+  }
+
+  deleteRC(node: TreeNode<K, V>): void {
+    node.deleteRC();
+    this._updateHeightAbove(node);
+  }
+  
+  deleteLC(node: TreeNode<K, V>): void {
+    node.deleteLC();
+    this._updateHeightAbove(node);
   }
 }

@@ -1,30 +1,44 @@
-import { TreeNode, TraverseOrder } from "../base";
-import { IBinaryTree } from "./interface";
+import TreeNode from '../tree-node';
 
-export default class BinaryTree<K, V> implements IBinaryTree<K, V> {
+interface IBinaryTree<T> {
+  root(): Nullable<TreeNode<T>>;
+  height(): number;
+  size(): number;
+  [Symbol.iterator](): Generator;
+}
+
+export default abstract class BinaryTree<T> implements IBinaryTree<T> {
+  protected _root: Nullable<TreeNode<T>>;
+
+  constructor();
+  constructor(root: TreeNode<T>);
+  constructor(root?: TreeNode<T>) {
+    if (root) {
+      this._root = root;
+    }
+  }
+
+  root(): Nullable<TreeNode<T>> {
+    return this._root;
+  }
+
   height(): number {
-    throw new Error("Method not implemented.");
-  }
-  size(): number {
-    throw new Error("Method not implemented.");
-  }
-  traverse(callback: (node: TreeNode<K, V>) => void, order: TraverseOrder): void {
-    throw new Error("Method not implemented.");
-  }
-  root(): TreeNode<K, V> {
-    throw new Error("Method not implemented.");
-  }
-  insertAsRC(node: TreeNode<K, V>, entry: Entry<K, V>): void {
-    throw new Error("Method not implemented.");
-  }
-  insertAsLC(node: TreeNode<K, V>, entry: Entry<K, V>): void {
-    throw new Error("Method not implemented.");
-  }
-  deleteRC(node: TreeNode<K, V>): void {
-    throw new Error("Method not implemented.");
-  }
-  deleteLC(node: TreeNode<K, V>): void {
-    throw new Error("Method not implemented.");
+    return 1;
   }
 
+  size(): number {
+    return 1;
+  }
+
+  *iter(node: Nullable<TreeNode<T>>): Generator {
+    if (!node) return;
+
+    yield node.key;
+    yield* this.iter(node.left);
+    yield* this.iter(node.right);
+  }
+
+  [Symbol.iterator](): Generator {
+    return this.iter(this._root);
+  }
 }

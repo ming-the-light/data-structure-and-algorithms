@@ -4,8 +4,7 @@
   "description": "data structure and algorithms in typescript",
   "main": null,
   "scripts": {
-    "build": "tsc",
-    "test": "echo test"
+    "build": "tsc -w"
   },
   "keywords": [
     "data",
@@ -13,5 +12,8 @@
     "algorithms"
   ],
   "author": "shen kang",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.1.5"
+  }
 }

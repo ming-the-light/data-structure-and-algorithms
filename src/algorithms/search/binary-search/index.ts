@@ -7,15 +7,15 @@
 export default function binarySearch<T>(xs: T[], item: T): number {
   let low = 0,
     high = xs.length - 1,
-    mid;
+    mid
 
   while (high >= low) {
-    mid = Math.ceil((low + high) / 2);
+    mid = Math.ceil((low + high) / 2)
 
-    if (xs[mid] === item) return mid;
-    else if (xs[mid] > item) high = mid - 1;
-    else low = mid + 1;
+    if (xs[mid] === item) return mid
+    else if (xs[mid] > item) high = mid - 1
+    else low = mid + 1
   }
 
-  return -1;
+  return -1
 }

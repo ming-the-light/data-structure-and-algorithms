@@ -5,18 +5,18 @@
  * @param idx2 index 2
  */
 function swap<T>(xs: T[], idx1: number, idx2: number) {
-  const temp = xs[idx1];
-  xs[idx1] = xs[idx2];
-  xs[idx2] = temp;
+  const temp = xs[idx1]
+  xs[idx1] = xs[idx2]
+  xs[idx2] = temp
 }
 
 function _reverse_rec<T>(xs: T[], low: number, high: number): T[] {
   if (low < high) {
-    swap(xs, low, high);
-    return _reverse_rec(xs, ++low, --high);
+    swap(xs, low, high)
+    return _reverse_rec(xs, ++low, --high)
   }
 
-  return xs;
+  return xs
 }
 
 /**
@@ -25,7 +25,7 @@ function _reverse_rec<T>(xs: T[], low: number, high: number): T[] {
  * @returns reversed array
  */
 export function reverse_rec<T>(xs: T[]): T[] {
-  return _reverse_rec([...xs], 0, xs.length - 1);
+  return _reverse_rec([...xs], 0, xs.length - 1)
 }
 
 /**
@@ -34,14 +34,14 @@ export function reverse_rec<T>(xs: T[]): T[] {
  * @returns reversed array
  */
 export function reverse_iter<T>(xs: T[]): T[] {
-  const r = [...xs];
+  const r = [...xs]
 
   let high = r.length - 1,
-    low = 0;
+    low = 0
 
   while (low < high) {
-    swap(r, low++, high--);
+    swap(r, low++, high--)
   }
 
-  return r;
+  return r
 }

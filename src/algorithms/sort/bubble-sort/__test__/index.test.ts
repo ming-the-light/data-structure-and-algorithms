@@ -1,4 +1,4 @@
-import bubbleSort from '../index';
+import bubbleSort from '../index'
 
 test('bubble sort test', () => {
   expect(bubbleSort([2, 1, 4, 5, 2, 20932, 1])).toEqual([
@@ -9,5 +9,5 @@ test('bubble sort test', () => {
     4,
     5,
     20932,
-  ]);
-});
+  ])
+})

@@ -1,9 +1,9 @@
-import BinaryTree from '../binary-tree';
-import TreeNode from '../tree-node';
+import BinaryTree from '../binary-tree'
+import TreeNode from '../tree-node'
 
 interface IBinarySearchTree<T> {
-  insert(key: T): this;
-  delete(key: T): this;
+  insert(key: T): this
+  delete(key: T): this
 }
 /**
  * Binary Search Tree
